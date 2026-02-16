@@ -3,20 +3,44 @@ layout: base.njk
 title: Tags
 ---
 
-<h1 class="text-3xl font-bold text-slate-900 mb-8">All Tags</h1>
+<!-- Hero -->
+<section class="text-center py-12 mb-8">
+  <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
+    All Tags
+  </h1>
+  <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+    Browse posts by topic. {{ collections.tagList.length }} topics to explore.
+  </p>
+</section>
 
 {% set tagList = collections.tagList %}
 
 {% if tagList.length === 0 %}
-  <p class="text-slate-500">No tags found. Add tags to your posts!</p>
+  <div class="text-center py-16 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
+    <p class="text-slate-500 dark:text-slate-400">No tags found yet!</p>
+  </div>
 {% else %}
-  <div class="flex flex-wrap gap-3">
+  <div class="flex flex-wrap justify-center gap-4">
     {% for tag in tagList %}
       {% set postCount = collections.posts | getByTag(tag) | length %}
-      <a href="/tags/{{ tag | slugify }}/" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-sky-700 px-4 py-2 rounded-full transition-colors">
-        <span class="font-medium">#{{ tag }}</span>
-        <span class="text-sm text-slate-500">({{ postCount }})</span>
+      <a href="/tags/{{ tag | slugify }}/" class="group relative">
+        <div class="px-6 py-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-500 hover:shadow-lg hover:shadow-sky-500/10 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">#{{ tag }}</span>
+            <span class="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-full">{{ postCount }}</span>
+          </div>
+        </div>
       </a>
     {% endfor %}
   </div>
 {% endif %}
+
+<!-- Back to Posts -->
+<div class="mt-16 text-center">
+  <a href="/" class="btn btn-primary">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Back to All Posts
+  </a>
+</div>

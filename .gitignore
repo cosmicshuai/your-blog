@@ -28,3 +28,4 @@ yarn-error.log*
 
 # Eleventy
 .cache/
+.npm-cache/
