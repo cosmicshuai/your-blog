@@ -1,0 +1,44 @@
+---
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+layout: base.njk
+permalink: /tags/{{ tag | slugify }}/
+eleventyComputed:
+  title: Posts tagged "{{ tag }}"
+---
+
+<h1 class="text-3xl font-bold text-slate-900 mb-2">Posts tagged "{{ tag }}"</h1>
+<p class="text-slate-500 mb-8">
+  <a href="/tags/" class="text-sky-600 hover:underline">&larr; All tags</a>
+</p>
+
+{% set postslist = collections.posts | getByTag(tag) %}
+
+<div class="space-y-0">
+  {% for post in postslist %}
+  <article class="post-card">
+    <h2 class="post-card-title mb-2">
+      <a href="{{ post.url }}">{{ post.data.title }}</a>
+    </h2>
+    
+    <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-3">
+      <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      
+      {% if post.data.tags %}
+        {% for t in post.data.tags %}
+          {% if t != "posts" %}
+          <a href="/tags/{{ t | slugify }}/" class="tag text-xs{% if t == tag %} bg-sky-200{% endif %}">#{{ t }}</a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    
+    {% if post.data.description %}
+    <p class="text-slate-600">{{ post.data.description }}</p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>

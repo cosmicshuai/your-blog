@@ -1,0 +1,22 @@
+---
+layout: base.njk
+title: Tags
+---
+
+<h1 class="text-3xl font-bold text-slate-900 mb-8">All Tags</h1>
+
+{% set tagList = collections.tagList %}
+
+{% if tagList.length === 0 %}
+  <p class="text-slate-500">No tags found. Add tags to your posts!</p>
+{% else %}
+  <div class="flex flex-wrap gap-3">
+    {% for tag in tagList %}
+      {% set postCount = collections.posts | getByTag(tag) | length %}
+      <a href="/tags/{{ tag | slugify }}/" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-sky-700 px-4 py-2 rounded-full transition-colors">
+        <span class="font-medium">#{{ tag }}</span>
+        <span class="text-sm text-slate-500">({{ postCount }})</span>
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}

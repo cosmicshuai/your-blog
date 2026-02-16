@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} - {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:type" content="{% if layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles/output.css">
+  
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+</head>
+<body class="min-h-screen bg-white text-slate-700">
+  <header class="border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center justify-between h-16">
+        <a href="/" class="text-xl font-bold text-slate-900 hover:text-sky-600 transition-colors">
+          {{ site.title }}
+        </a>
+        <div class="flex items-center space-x-6">
+          <a href="/" class="text-slate-600 hover:text-sky-600 transition-colors">Home</a>
+          <a href="/tags/" class="text-slate-600 hover:text-sky-600 transition-colors">Tags</a>
+          <a href="/feed.xml" class="text-slate-600 hover:text-sky-600 transition-colors">RSS</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {{ content | safe }}
+  </main>
+
+  <footer class="border-t border-slate-200 mt-auto">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <p class="text-center text-slate-500">
+        &copy; {{ "now" | dateYear }} {{ site.author }}. Built with <a href="https://www.11ty.dev/" class="text-sky-600 hover:underline">Eleventy</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

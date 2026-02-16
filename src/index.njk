@@ -1,0 +1,39 @@
+---
+layout: base.njk
+---
+
+<div class="max-w-3xl mx-auto">
+  <h1 class="text-3xl font-bold text-slate-900 mb-8">Latest Posts</h1>
+  
+  {% set postslist = collections.posts %}
+  
+  {% if postslist.length === 0 %}
+    <p class="text-slate-500 text-center py-12">No posts yet. Create your first post in <code class="bg-slate-100 px-2 py-1 rounded">src/posts/</code>!</p>
+  {% else %}
+    <div class="space-y-0">
+      {% for post in postslist %}
+      <article class="post-card">
+        <h2 class="post-card-title mb-2">
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+        </h2>
+        
+        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-3">
+          <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+          
+          {% if post.data.tags %}
+            {% for tag in post.data.tags %}
+              {% if tag != "posts" %}
+              <a href="/tags/{{ tag | slugify }}/" class="tag text-xs">#{{ tag }}</a>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+        
+        {% if post.data.description %}
+        <p class="text-slate-600">{{ post.data.description }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
