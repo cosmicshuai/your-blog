@@ -13,6 +13,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// --- Mobile Menu Toggle ---
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.querySelector('[data-nav-toggle]');
+  const mobileMenu = document.querySelector('[data-nav-menu]');
+  const mobileThemeToggle = document.getElementById('theme-toggle-mobile');
+  const html = document.documentElement;
+  
+  // Hamburger menu toggle
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+  
+  // Mobile theme toggle (same logic as desktop)
+  if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', () => {
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+});
+
 // --- Reading Progress ---
 document.addEventListener('DOMContentLoaded', () => {
   const progressBar = document.getElementById('progress');

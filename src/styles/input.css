@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal scroll on all pages */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Base styles */
 html {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -178,6 +185,7 @@ h4:hover .anchor-link {
 
 .post-content pre {
   @apply relative rounded-xl bg-terminal-darker border border-terminal-border p-4 overflow-x-auto my-6 transition-colors duration-300;
+  max-width: 100%;
 }
 
 .post-content pre:hover {
