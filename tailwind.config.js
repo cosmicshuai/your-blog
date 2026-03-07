@@ -45,29 +45,29 @@ export default {
         DEFAULT: {
           css: {
             maxWidth: 'none',
-            color: '#334155',
+            color: '#6b7280',
             a: {
-              color: '#0ea5e9',
+              color: 'var(--color-terminal-cyan)',
               textDecoration: 'none',
               '&:hover': {
-                color: '#0284c7',
+                color: 'var(--color-terminal-green)',
                 textDecoration: 'underline',
               },
             },
             h1: {
-              color: '#0f172a',
+              color: 'var(--color-terminal-darker)',
               fontWeight: '700',
             },
             h2: {
-              color: '#0f172a',
+              color: 'var(--color-terminal-darker)',
               fontWeight: '600',
             },
             h3: {
-              color: '#0f172a',
+              color: 'var(--color-terminal-darker)',
               fontWeight: '600',
             },
             code: {
-              color: '#0f172a',
+              color: 'var(--color-terminal-darker)',
               backgroundColor: '#f1f5f9',
               padding: '0.25rem 0.375rem',
               borderRadius: '0.25rem',
@@ -80,11 +80,11 @@ export default {
               content: '""',
             },
             pre: {
-              backgroundColor: '#1e293b',
-              color: '#f8fafc',
+              backgroundColor: 'var(--color-terminal-darker)',
+              color: 'var(--color-terminal-light-bg)',
             },
             blockquote: {
-              borderLeftColor: '#0ea5e9',
+              borderLeftColor: 'var(--color-terminal-cyan)',
               color: '#475569',
             },
           },
@@ -93,32 +93,32 @@ export default {
           css: {
             color: '#cbd5e1',
             a: {
-              color: '#38bdf8',
+              color: 'var(--color-terminal-cyan)',
               '&:hover': {
-                color: '#7dd3fc',
+                color: 'var(--color-terminal-green)',
               },
             },
             h1: {
-              color: '#f8fafc',
+              color: 'var(--color-terminal-light-bg)',
             },
             h2: {
-              color: '#f1f5f9',
+              color: 'var(--color-terminal-light-bg)',
             },
             h3: {
               color: '#e2e8f0',
             },
             code: {
-              color: '#f1f5f9',
-              backgroundColor: '#1e293b',
+              color: 'var(--color-terminal-light-bg)',
+              backgroundColor: 'var(--color-terminal-surface)',
             },
             pre: {
-              backgroundColor: '#0f172a',
-              color: '#f8fafc',
+              backgroundColor: 'var(--color-terminal-darker)',
+              color: 'var(--color-terminal-light-bg)',
             },
             blockquote: {
-              borderLeftColor: '#38bdf8',
+              borderLeftColor: 'var(--color-terminal-cyan)',
               color: '#94a3b8',
-              backgroundColor: '#0f172a',
+              backgroundColor: 'var(--color-terminal-surface)',
             },
           },
         },
