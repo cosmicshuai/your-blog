@@ -4,18 +4,14 @@
 
 /* Base styles */
 html {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-code, pre {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 /* Custom styles for blog */
 
 /* Table of Contents styles */
 .toc {
-  @apply bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 mb-8 border border-slate-200 dark:border-slate-700 backdrop-blur-sm;
+  @apply bg-terminal-light-bg dark:bg-terminal-surface/50 rounded-xl p-6 mb-8 border border-terminal-light-border dark:border-terminal-border backdrop-blur-sm;
 }
 
 .toc-title {
@@ -35,7 +31,7 @@ code, pre {
 }
 
 .toc-link {
-  @apply text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors;
+  @apply text-slate-600 dark:text-slate-400 hover:text-terminal-cyan dark:hover:text-terminal-green transition-colors;
 }
 
 /* Anchor links */
@@ -44,7 +40,7 @@ code, pre {
 }
 
 .anchor-link {
-  @apply absolute -left-6 top-0 text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 no-underline opacity-0 transition-opacity;
+  @apply absolute -left-6 top-0 text-slate-400 hover:text-terminal-cyan dark:hover:text-terminal-green no-underline opacity-0 transition-opacity;
 }
 
 h2:hover .anchor-link,
@@ -55,7 +51,7 @@ h4:hover .anchor-link {
 
 /* Tag styles */
 .tag {
-  @apply inline-block bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-400 px-3 py-1 rounded-full text-sm font-medium hover:bg-sky-200 dark:hover:bg-sky-800/50 transition-all hover:scale-105;
+  @apply inline-block bg-terminal-green/10 dark:bg-terminal-green/20 text-terminal-green dark:text-terminal-cyan px-3 py-1 rounded-full text-sm font-medium hover:bg-terminal-green/20 dark:hover:bg-terminal-green/30 transition-all hover:scale-105;
 }
 
 /* Post content styles */
@@ -84,11 +80,11 @@ h4:hover .anchor-link {
 }
 
 .post-content a {
-  @apply text-sky-600 dark:text-sky-400 hover:underline;
+  @apply text-terminal-cyan dark:text-terminal-green hover:underline;
 }
 
 .post-content blockquote {
-  @apply border-l-4 border-sky-500 bg-sky-50 dark:bg-sky-900/20 pl-4 py-2 pr-4 rounded-r-lg italic my-6;
+  @apply border-l-4 border-terminal-green bg-terminal-light-bg dark:bg-terminal-surface/20 pl-4 py-2 pr-4 rounded-r-lg italic my-6;
 }
 
 .post-content pre {
@@ -113,7 +109,7 @@ h4:hover .anchor-link {
 }
 
 .group:hover .post-card-title {
-  @apply text-sky-600 dark:text-sky-400;
+  @apply text-terminal-cyan dark:text-terminal-green;
 }
 
 .post-card:hover {
@@ -127,7 +123,7 @@ h4:hover .anchor-link {
 
 .hero-title {
   @apply text-5xl md:text-6xl font-bold mb-6;
-  background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 50%, #ec4899 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -139,21 +135,21 @@ h4:hover .anchor-link {
 
 /* Reading progress bar */
 .reading-progress {
-  @apply fixed top-0 left-0 h-1 bg-gradient-to-r from-sky-500 to-purple-500 z-50 transition-all;
+  @apply fixed top-0 left-0 h-1 bg-gradient-to-r from-terminal-green to-terminal-cyan z-50 transition-all;
 }
 
 /* Card hover effect */
 .card-hover {
-  @apply transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/10 hover:-translate-y-1;
+  @apply transition-all duration-300 hover:shadow-xl hover:shadow-terminal-green/10 hover:-translate-y-1;
 }
 
 /* Button styles */
 .btn {
-  @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-sky-500/25 active:scale-95;
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-terminal-green/25 active:scale-95;
 }
 
 .btn-primary {
-  @apply bg-gradient-to-r from-sky-500 to-purple-500 text-white hover:from-sky-600 hover:to-purple-600;
+  @apply bg-gradient-to-r from-terminal-green to-terminal-cyan text-white hover:from-terminal-green/90 hover:to-terminal-cyan/90;
 }
 
 /* Animated underline link */
@@ -163,7 +159,7 @@ h4:hover .anchor-link {
 
 .link-underline::after {
   content: '';
-  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-sky-500 transition-all duration-300;
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-terminal-green transition-all duration-300;
 }
 
 .link-underline:hover::after {
@@ -177,7 +173,7 @@ h4:hover .anchor-link {
 
 .glow::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-sky-500 to-purple-500 rounded-xl blur-xl opacity-0 transition-opacity -z-10;
+  @apply absolute inset-0 bg-gradient-to-r from-terminal-green to-terminal-cyan rounded-xl blur-xl opacity-0 transition-opacity -z-10;
 }
 
 .glow:hover::before {

@@ -9,52 +9,52 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        terminal: {
+          green: '#4ade80',
+          cyan: '#22d3ee',
+          dim: '#6b7280',
+          dark: '#0a0a0f',
+          darker: '#050508',
+          surface: '#111118',
+          border: '#1e1e2e',
+          'light-bg': '#f5f5f0',
+          'light-surface': '#ffffff',
+          'light-border': '#e5e5e0',
+        },
+      },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-      },
-      typography: {
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             maxWidth: 'none',
-            color: '#334155',
+            color: theme('colors.terminal.dim'),
             a: {
-              color: '#0ea5e9',
+              color: theme('colors.terminal.cyan'),
               textDecoration: 'none',
               '&:hover': {
-                color: '#0284c7',
+                color: theme('colors.terminal.cyan'),
                 textDecoration: 'underline',
               },
             },
             h1: {
-              color: '#0f172a',
+              color: theme('colors.terminal.dark'),
               fontWeight: '700',
             },
             h2: {
-              color: '#0f172a',
+              color: theme('colors.terminal.dark'),
               fontWeight: '600',
             },
             h3: {
-              color: '#0f172a',
+              color: theme('colors.terminal.dark'),
               fontWeight: '600',
             },
             code: {
-              color: '#0f172a',
-              backgroundColor: '#f1f5f9',
+              color: theme('colors.terminal.dark'),
+              backgroundColor: theme('colors.terminal.light-bg'),
               padding: '0.25rem 0.375rem',
               borderRadius: '0.25rem',
               fontWeight: '400',
@@ -66,49 +66,49 @@ export default {
               content: '""',
             },
             pre: {
-              backgroundColor: '#1e293b',
-              color: '#f8fafc',
+              backgroundColor: theme('colors.terminal.surface'),
+              color: theme('colors.terminal.light-surface'),
             },
             blockquote: {
-              borderLeftColor: '#0ea5e9',
-              color: '#475569',
+              borderLeftColor: theme('colors.terminal.cyan'),
+              color: theme('colors.terminal.dim'),
             },
           },
         },
         invert: {
           css: {
-            color: '#cbd5e1',
+            color: theme('colors.terminal.light-bg'),
             a: {
-              color: '#38bdf8',
+              color: theme('colors.terminal.cyan'),
               '&:hover': {
-                color: '#7dd3fc',
+                color: theme('colors.terminal.green'),
               },
             },
             h1: {
-              color: '#f8fafc',
+              color: theme('colors.terminal.light-surface'),
             },
             h2: {
-              color: '#f1f5f9',
+              color: theme('colors.terminal.light-surface'),
             },
             h3: {
-              color: '#e2e8f0',
+              color: theme('colors.terminal.light-bg'),
             },
             code: {
-              color: '#f1f5f9',
-              backgroundColor: '#1e293b',
+              color: theme('colors.terminal.light-surface'),
+              backgroundColor: theme('colors.terminal.surface'),
             },
             pre: {
-              backgroundColor: '#0f172a',
-              color: '#f8fafc',
+              backgroundColor: theme('colors.terminal.darker'),
+              color: theme('colors.terminal.light-surface'),
             },
             blockquote: {
-              borderLeftColor: '#38bdf8',
-              color: '#94a3b8',
-              backgroundColor: '#0f172a',
+              borderLeftColor: theme('colors.terminal.cyan'),
+              color: theme('colors.terminal.dim'),
+              backgroundColor: theme('colors.terminal.dark'),
             },
           },
         },
-      },
+      }),
     },
   },
   plugins: [
