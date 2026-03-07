@@ -1,0 +1,52 @@
+Task 11: Scroll Enhancements & Visual Elements - QA Summary
+============================================================
+
+QA #1: Scroll-to-Top Button ✅
+- Button appears after 300px scroll: PASS
+  - Scrolled to 499.5px, button visible: true
+- Clicking scrolls to top: PASS
+  - After click, scrollY = 0
+- Screenshot: task-11-scroll-to-top-visible.png, task-11-scroll-to-top.png
+
+QA #2: Scroll-Reveal Animations ✅
+- Elements with data-reveal animate on scroll: PASS
+  - Tested 4 elements with data-reveal attribute
+  - Elements in viewport: revealed class added, reveal-hidden removed
+  - Elements below fold: reveal-hidden class present until scroll
+- Screenshot: task-11-scroll-reveal.png
+
+QA #3: Reduced Motion Accessibility ✅
+- prefers-reduced-motion: reduce respected: PASS
+  - All 4 data-reveal elements have revealed class immediately
+  - No reveal-hidden class present (instant reveal, no animation)
+- Screenshot: task-11-reduced-motion.png
+
+QA #4: Favicon Terminal Design ✅
+- Favicon updated to terminal aesthetic: PASS
+  - File: /assets/favicon.svg (285 bytes)
+  - Design: L-shape terminal path (#4ade80) + cursor square
+  - Background: Terminal dark (#0a0a0f)
+  - Loaded successfully via HTTP
+- Screenshot: task-11-favicon.png
+
+QA #5: OG Image Exists ✅
+- OG image created: PASS
+  - File: _site/assets/og-image.png (34KB)
+  - Dimensions: 1200×630px
+  - Terminal-themed with grid pattern, green text/border
+  - Content: Site title + tagline
+- Details: task-11-og-image-verification.txt
+
+Implementation Details:
+-----------------------
+✅ Scroll-to-top button: Fixed bottom-right, appears >300px, smooth scroll
+✅ IntersectionObserver: threshold 0.1, rootMargin -50px, once: true
+✅ CSS transitions: opacity 0.6s, transform 0.6s (translateY)
+✅ Smooth scrolling: scroll-behavior: smooth (with reduced-motion override)
+✅ View Transitions: @view-transition { navigation: auto; }
+✅ Accessibility: aria-label, focus ring, prefers-reduced-motion support
+✅ data-reveal attributes added to: index.njk (stats, posts), projects.njk, photography.njk, about.njk
+
+All 5 QA scenarios PASSED ✅
+Build exits 0 ✅
+Evidence files saved to .sisyphus/evidence/ ✅
