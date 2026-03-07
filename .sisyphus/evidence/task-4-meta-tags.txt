@@ -1,0 +1,4 @@
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://codingrangers.org/assets/og-image.png">
+  <link rel="canonical" href="https://codingrangers.org/">
+  <meta name="view-transition" content="same-origin">

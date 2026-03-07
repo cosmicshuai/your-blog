@@ -9,6 +9,11 @@
   <meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
   <meta property="og:type" content="{% if layout == 'post' %}article{% else %}website{% endif %}">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ site.url }}/assets/og-image.png">
+  <meta property="og:image" content="{{ site.url }}/assets/og-image.png">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta name="view-transition" content="same-origin">
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -16,7 +21,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Styles -->
   <link rel="stylesheet" href="/styles/output.css">
@@ -31,4 +36,5 @@
       document.documentElement.classList.toggle('dark', theme === 'dark');
     })();
   </script>
+  <script src="/assets/js/main.js" defer></script>
 </head>

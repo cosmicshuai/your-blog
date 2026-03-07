@@ -1,26 +1,45 @@
-<header class="sticky top-0 z-50 backdrop-blur-lg bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+<header class="sticky top-0 z-50 backdrop-blur-lg bg-terminal-light-bg/80 dark:bg-terminal-dark/80 border-b border-terminal-light-border dark:border-terminal-border transition-colors duration-300">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <nav class="flex items-center justify-between h-16">
-        <a href="/" class="text-xl font-bold bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+        <a href="/" class="text-xl font-bold text-terminal-green dark:text-terminal-cyan font-mono hover:opacity-80 transition-opacity">
           {{ site.title }}
         </a>
         
-        <div class="flex items-center space-x-6">
-          <a href="/" class="relative text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors group">
+        <!-- Mobile hamburger button (visible below md) -->
+        <button data-nav-toggle class="md:hidden p-2 rounded-lg bg-terminal-surface border border-terminal-border text-terminal-dim hover:text-terminal-green transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="/" class="relative text-terminal-dim hover:text-terminal-green dark:hover:text-terminal-cyan transition-colors group">
             Home
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-600 transition-all group-hover:w-full"></span>
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terminal-green transition-all group-hover:w-full"></span>
           </a>
-          <a href="/tags/" class="relative text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors group">
+          <a href="/tags/" class="relative text-terminal-dim hover:text-terminal-green dark:hover:text-terminal-cyan transition-colors group">
             Tags
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-600 transition-all group-hover:w-full"></span>
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terminal-green transition-all group-hover:w-full"></span>
           </a>
-          <a href="/feed.xml" class="relative text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors group">
+          <a href="/about/" class="relative text-terminal-dim hover:text-terminal-green dark:hover:text-terminal-cyan transition-colors group">
+            About
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terminal-green transition-all group-hover:w-full"></span>
+          </a>
+          <a href="/photography/" class="relative text-terminal-dim hover:text-terminal-green dark:hover:text-terminal-cyan transition-colors group">
+            Photography
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terminal-green transition-all group-hover:w-full"></span>
+          </a>
+          <a href="/projects/" class="relative text-terminal-dim hover:text-terminal-green dark:hover:text-terminal-cyan transition-colors group">
+            Projects
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terminal-green transition-all group-hover:w-full"></span>
+          </a>
+          <a href="/feed.xml" class="relative text-terminal-dim hover:text-terminal-green dark:hover:text-terminal-cyan transition-colors group">
             RSS
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-600 transition-all group-hover:w-full"></span>
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terminal-green transition-all group-hover:w-full"></span>
           </a>
           
           <!-- Dark Mode Toggle -->
-          <button id="theme-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle dark mode">
+          <button id="theme-toggle" class="p-2 rounded-lg bg-terminal-surface dark:bg-terminal-darker border border-terminal-border hover:bg-terminal-green/10 text-terminal-dim hover:text-terminal-green dark:hover:text-terminal-cyan transition-colors" aria-label="Toggle dark mode">
             <!-- Sun icon -->
             <svg id="sun-icon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
@@ -32,5 +51,29 @@
           </button>
         </div>
       </nav>
+      
+      <!-- Mobile menu panel (hidden by default) -->
+      <div id="mobile-menu" data-nav-menu class="hidden md:hidden border-t border-terminal-border bg-terminal-light-bg dark:bg-terminal-dark">
+        <div class="px-4 py-4 space-y-3">
+          <a href="/" class="block text-terminal-dim hover:text-terminal-green transition-colors">Home</a>
+          <a href="/tags/" class="block text-terminal-dim hover:text-terminal-green transition-colors">Tags</a>
+          <a href="/about/" class="block text-terminal-dim hover:text-terminal-green transition-colors">About</a>
+          <a href="/photography/" class="block text-terminal-dim hover:text-terminal-green transition-colors">Photography</a>
+          <a href="/projects/" class="block text-terminal-dim hover:text-terminal-green transition-colors">Projects</a>
+          <a href="/feed.xml" class="block text-terminal-dim hover:text-terminal-green transition-colors">RSS</a>
+          <div class="pt-3 border-t border-terminal-border">
+            <!-- Dark mode toggle (duplicate for mobile) -->
+            <button id="theme-toggle-mobile" class="w-full flex items-center justify-between p-2 rounded-lg bg-terminal-surface border border-terminal-border text-terminal-dim hover:bg-terminal-green/10 transition-colors" aria-label="Toggle dark mode">
+              <span class="text-sm">Dark Mode</span>
+              <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+              <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </header>

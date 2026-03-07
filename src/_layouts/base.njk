@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 {% include "head.njk" %}
-<body class="min-h-screen bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 transition-colors duration-300">
-  <!-- Animated background gradient -->
-  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-    <div class="absolute -top-40 -right-40 w-80 h-80 bg-sky-400/20 dark:bg-sky-500/10 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-  </div>
-
+<body class="min-h-screen bg-terminal-light-bg dark:bg-terminal-dark text-terminal-dim dark:text-terminal-light-bg transition-colors duration-300">
   {% include "nav.njk" %}
 
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -15,16 +9,5 @@
   </main>
 
   {% include "footer.njk" %}
-
-  <!-- Theme Toggle Script -->
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    themeToggle.addEventListener('click', () => {
-      const isDark = html.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-  </script>
 </body>
 </html>
