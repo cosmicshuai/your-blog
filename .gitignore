@@ -29,3 +29,6 @@ yarn-error.log*
 # Eleventy
 .cache/
 .npm-cache/
+
+# Build artifacts
+src/styles/output.css
