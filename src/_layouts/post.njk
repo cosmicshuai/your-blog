@@ -18,9 +18,9 @@ layout: base.njk
       {% endif %}
     </div>
     
-    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 leading-tight">{{ title }}</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-terminal-darker dark:text-terminal-light-bg mb-6 leading-tight">{{ title }}</h1>
     
-    <div class="flex items-center justify-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+    <div class="flex items-center justify-center gap-4 text-sm text-terminal-dim">
       <time datetime="{{ date | htmlDateString }}" class="flex items-center gap-1">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -43,11 +43,11 @@ layout: base.njk
   </div>
 
   <!-- Post Footer -->
-  <footer class="mt-20 pt-8 border-t border-slate-200 dark:border-slate-800">
+  <footer class="mt-20 pt-8 border-t border-terminal-light-border dark:border-terminal-border">
     <!-- Tags -->
     {% if tags %}
     <div class="mb-8">
-      <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">Tagged with</h3>
+      <h3 class="text-sm font-semibold text-terminal-darker dark:text-terminal-light-bg mb-3">Tagged with</h3>
       <div class="flex flex-wrap gap-2">
         {% for tag in tags %}
           {% if tag != "posts" %}
@@ -59,13 +59,13 @@ layout: base.njk
     {% endif %}
     
     <!-- Author Box -->
-    <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 mb-8 flex items-center gap-4">
-      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
+    <div class="bg-terminal-light-surface dark:bg-terminal-surface border border-terminal-light-border dark:border-terminal-border rounded-xl p-6 mb-8 flex items-center gap-4">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-terminal-green to-terminal-cyan text-terminal-darker flex items-center justify-center text-white text-2xl font-bold">
         {{ site.author | first }}
       </div>
       <div>
-        <div class="font-semibold text-slate-900 dark:text-slate-100">{{ site.author }}</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400">Writer & Developer</div>
+        <div class="font-semibold text-terminal-darker dark:text-terminal-light-bg">{{ site.author }}</div>
+        <div class="text-sm text-terminal-dim">Writer & Developer</div>
       </div>
     </div>
 
@@ -76,28 +76,28 @@ layout: base.njk
       
       <div>
         {% if previousPost %}
-        <a href="{{ previousPost.url }}" class="group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 transition-colors">
-          <span class="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1 mb-1">
+        <a href="{{ previousPost.url }}" class="group block p-4 rounded-xl border border-terminal-light-border dark:border-terminal-border hover:border-terminal-green dark:hover:border-terminal-green transition-colors">
+          <span class="text-sm text-terminal-dim flex items-center gap-1 mb-1">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
             Previous
           </span>
-          <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400">{{ previousPost.data.title }}</span>
+          <span class="font-medium text-terminal-darker dark:text-terminal-light-bg group-hover:text-terminal-green dark:group-hover:text-terminal-green">{{ previousPost.data.title }}</span>
         </a>
         {% endif %}
       </div>
       
       <div class="md:text-right">
         {% if nextPost %}
-        <a href="{{ nextPost.url }}" class="group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 transition-colors">
-          <span class="text-sm text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1 mb-1">
+        <a href="{{ nextPost.url }}" class="group block p-4 rounded-xl border border-terminal-light-border dark:border-terminal-border hover:border-terminal-green dark:hover:border-terminal-green transition-colors">
+          <span class="text-sm text-terminal-dim flex items-center justify-end gap-1 mb-1">
             Next
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </span>
-          <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400">{{ nextPost.data.title }}</span>
+          <span class="font-medium text-terminal-darker dark:text-terminal-light-bg group-hover:text-terminal-green dark:group-hover:text-terminal-green">{{ nextPost.data.title }}</span>
         </a>
         {% endif %}
       </div>
@@ -105,13 +105,4 @@ layout: base.njk
   </footer>
 </article>
 
-<!-- Reading Progress Script -->
-<script>
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    document.getElementById('progress').style.width = progress + '%';
-  }
-  window.addEventListener('scroll', updateProgress);
-</script>
+

@@ -5,10 +5,10 @@ title: Tags
 
 <!-- Hero -->
 <section class="text-center py-12 mb-8">
-  <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
+  <h1 class="text-4xl md:text-5xl font-bold mb-4 text-terminal-green font-mono">
     All Tags
   </h1>
-  <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+  <p class="text-lg text-terminal-dim dark:text-terminal-dim max-w-xl mx-auto">
     Browse posts by topic. {{ collections.tagList.length }} topics to explore.
   </p>
 </section>
@@ -16,18 +16,18 @@ title: Tags
 {% set tagList = collections.tagList %}
 
 {% if tagList.length === 0 %}
-  <div class="text-center py-16 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
-    <p class="text-slate-500 dark:text-slate-400">No tags found yet!</p>
+  <div class="text-center py-16 bg-terminal-surface dark:bg-terminal-surface rounded-2xl border border-terminal-border dark:border-terminal-border">
+    <p class="text-terminal-dim dark:text-terminal-dim">No tags found yet!</p>
   </div>
 {% else %}
   <div class="flex flex-wrap justify-center gap-4">
     {% for tag in tagList %}
       {% set postCount = collections.posts | getByTag(tag) | length %}
       <a href="/tags/{{ tag | slugify }}/" class="group relative">
-        <div class="px-6 py-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-500 hover:shadow-lg hover:shadow-sky-500/10 transition-all duration-300 hover:-translate-y-1">
+        <div class="px-6 py-4 bg-terminal-surface dark:bg-terminal-surface rounded-xl border border-terminal-border dark:border-terminal-border hover:border-terminal-green dark:hover:border-terminal-green hover:shadow-lg hover:shadow-terminal-green/10 transition-all duration-300 hover:-translate-y-1">
           <div class="flex items-center gap-3">
-            <span class="text-2xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">#{{ tag }}</span>
-            <span class="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-full">{{ postCount }}</span>
+            <span class="text-2xl font-bold text-terminal-green group-hover:text-terminal-cyan transition-colors">#{{ tag }}</span>
+            <span class="text-sm text-terminal-dim dark:text-terminal-dim bg-terminal-dark dark:bg-terminal-dark px-2 py-1 rounded-full">{{ postCount }}</span>
           </div>
         </div>
       </a>

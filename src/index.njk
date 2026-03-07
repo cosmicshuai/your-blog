@@ -3,65 +3,85 @@ layout: base.njk
 ---
 
 <!-- Hero Section -->
-<section class="hero">
-  <h1 class="hero-title">{{ site.title }}</h1>
-  <p class="hero-subtitle">{{ site.description }}</p>
+<section class="hero mb-16 relative">
+  <div class="terminal-window bg-terminal-surface border border-terminal-border rounded-lg overflow-hidden max-w-2xl mx-auto shadow-2xl">
+    <div class="terminal-chrome bg-terminal-darker px-4 py-3 flex items-center gap-2 border-b border-terminal-border">
+      <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+      <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+      <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+    </div>
+    <div class="terminal-body p-6 md:p-8 font-mono text-left min-h-[160px]">
+      <div class="flex items-center gap-2 text-lg sm:text-xl md:text-2xl text-terminal-light-surface">
+        <span class="text-terminal-green select-none">$</span>
+        <h1 class="hero-title inline-block m-0 font-normal !bg-none !text-terminal-light-surface dark:!text-terminal-light-surface" data-text="{{ site.title }}" aria-live="polite" style="-webkit-text-fill-color: initial;">
+          <span class="sr-only">{{ site.title }}</span>
+          <span class="typing-title-text" aria-hidden="true"></span>
+          <span class="typing-cursor hidden text-terminal-green" style="animation: blink 1s step-end infinite;">▌</span>
+        </h1>
+      </div>
+      <p class="hero-subtitle mt-4 text-terminal-dim min-h-[1.5em] md:text-lg" data-text="{{ site.description }}" aria-live="polite">
+        <span class="sr-only">{{ site.description }}</span>
+        <span class="typing-subtitle-text" aria-hidden="true"></span>
+      </p>
+    </div>
+  </div>
+  
   <div class="mt-8 flex justify-center gap-4">
-    <a href="#posts" class="btn btn-primary">
+    <a href="#posts" class="btn bg-terminal-green text-terminal-dark hover:bg-terminal-green/90 border border-transparent font-medium px-6 py-2 rounded-md transition-colors flex items-center gap-2">
       Start Reading
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
       </svg>
     </a>
-    <a href="/tags/" class="btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+    <a href="/tags/" class="btn bg-terminal-surface text-terminal-light-surface border border-terminal-border hover:border-terminal-dim font-medium px-6 py-2 rounded-md transition-colors">
       Browse Tags
     </a>
   </div>
 </section>
 
 <!-- Stats or Info -->
-<div class="flex justify-center gap-8 mb-16 text-center">
+<div class="flex justify-center gap-8 mb-16 text-center font-mono">
   <div>
-    <div class="text-3xl font-bold text-slate-900 dark:text-slate-100">{{ collections.posts.length }}</div>
-    <div class="text-sm text-slate-500 dark:text-slate-400">Posts</div>
+    <div class="text-3xl font-bold text-terminal-green">{{ collections.posts.length }}</div>
+    <div class="text-sm text-terminal-dim">Posts</div>
   </div>
-  <div class="w-px bg-slate-200 dark:bg-slate-700"></div>
+  <div class="w-px bg-terminal-border"></div>
   <div>
-    <div class="text-3xl font-bold text-slate-900 dark:text-slate-100">{{ collections.tagList.length }}</div>
-    <div class="text-sm text-slate-500 dark:text-slate-400">Topics</div>
+    <div class="text-3xl font-bold text-terminal-green">{{ collections.tagList.length }}</div>
+    <div class="text-sm text-terminal-dim">Topics</div>
   </div>
 </div>
 
 <!-- Posts Section -->
 <section id="posts" class="max-w-3xl mx-auto">
   <div class="flex items-center gap-4 mb-8">
-    <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Latest Posts</h2>
-    <div class="flex-1 h-px bg-gradient-to-r from-slate-200 dark:from-slate-700 to-transparent"></div>
+    <h2 class="text-2xl font-bold text-terminal-light-surface font-mono">Latest Posts</h2>
+    <div class="flex-1 h-px bg-gradient-to-r from-terminal-border to-transparent"></div>
   </div>
   
   {% set postslist = collections.posts %}
   
   {% if postslist.length === 0 %}
-    <div class="text-center py-16 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
-      <p class="text-slate-500 dark:text-slate-400 mb-4">No posts yet.</p>
-      <code class="bg-slate-100 dark:bg-slate-900 px-3 py-1 rounded text-sm">src/posts/</code>
+    <div class="text-center py-16 bg-terminal-surface rounded-2xl border border-dashed border-terminal-border">
+      <p class="text-terminal-dim mb-4">No posts yet.</p>
+      <code class="bg-terminal-darker px-3 py-1 rounded text-sm text-terminal-green">src/posts/</code>
     </div>
   {% else %}
     <div class="space-y-0">
       {% for post in postslist %}
-      <article class="post-card card-hover">
+      <article class="post-card group border-b border-terminal-border hover:bg-terminal-surface/30 transition-colors p-6 -mx-6 rounded-xl">
         <div class="flex items-start justify-between gap-4">
           <div class="flex-1">
-            <h3 class="post-card-title mb-3">
-              <a href="{{ post.url }}">{{ post.data.title }}</a>
+            <h3 class="post-card-title mb-3 text-lg font-medium text-terminal-light-surface group-hover:text-terminal-green transition-colors">
+              <a href="{{ post.url }}" class="block">{{ post.data.title }}</a>
             </h3>
             
             {% if post.data.description %}
-            <p class="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{{ post.data.description }}</p>
+            <p class="text-terminal-dim mb-4 line-clamp-2">{{ post.data.description }}</p>
             {% endif %}
             
-            <div class="flex flex-wrap items-center gap-3 text-sm">
-              <time datetime="{{ post.date | htmlDateString }}" class="text-slate-500 dark:text-slate-500 flex items-center gap-1">
+            <div class="flex flex-wrap items-center gap-3 text-sm font-mono">
+              <time datetime="{{ post.date | htmlDateString }}" class="text-terminal-dim flex items-center gap-1">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
@@ -69,17 +89,17 @@ layout: base.njk
               </time>
               
               {% if post.data.tags %}
-                <span class="text-slate-300 dark:text-slate-600">•</span>
+                <span class="text-terminal-border">•</span>
                 {% for tag in post.data.tags %}
                   {% if tag != "posts" %}
-                  <a href="/tags/{{ tag | slugify }}/" class="tag text-xs">#{{ tag }}</a>
+                  <a href="/tags/{{ tag | slugify }}/" class="tag text-xs text-terminal-green bg-terminal-green/10 hover:bg-terminal-green/20 px-2 py-0.5 rounded-full transition-colors">#{{ tag }}</a>
                   {% endif %}
                 {% endfor %}
               {% endif %}
             </div>
           </div>
           
-          <svg class="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-sky-500 group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 text-terminal-dim group-hover:text-terminal-green group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
         </div>
@@ -91,14 +111,23 @@ layout: base.njk
 
 <!-- Newsletter or CTA Section -->
 <section class="mt-20 text-center">
-  <div class="bg-gradient-to-r from-sky-500/10 to-purple-500/10 dark:from-sky-500/5 dark:to-purple-500/5 rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-slate-800">
-    <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4">Stay Updated</h2>
-    <p class="text-slate-600 dark:text-slate-400 mb-6">Subscribe to the RSS feed to get notified of new posts.</p>
-    <a href="/feed.xml" class="btn btn-primary">
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.739-23.98-24-24.026v4.838z"/>
-      </svg>
-      Subscribe via RSS
-    </a>
+  <div class="bg-gradient-to-br from-terminal-surface to-terminal-darker rounded-2xl p-8 md:p-12 border border-terminal-border relative overflow-hidden">
+    <div class="absolute inset-0 bg-terminal-green/5 opacity-50"></div>
+    <div class="relative z-10">
+      <h2 class="text-2xl font-bold text-terminal-light-surface mb-4 font-mono">Stay Updated</h2>
+      <p class="text-terminal-dim mb-6">Subscribe to the RSS feed to get notified of new posts.</p>
+      <a href="/feed.xml" class="btn inline-flex items-center gap-2 bg-terminal-green text-terminal-dark hover:bg-terminal-green/90 px-6 py-3 rounded-md font-medium transition-colors">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.739-23.98-24-24.026v4.838z"/>
+        </svg>
+        Subscribe via RSS
+      </a>
+    </div>
   </div>
 </section>
+
+<style>
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>

@@ -13,9 +13,9 @@ eleventyComputed:
 <!-- Hero -->
 <section class="text-center py-12 mb-8">
   <h1 class="text-4xl md:text-5xl font-bold mb-4">
-    <span class="bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">#{{ tag }}</span>
+    <span class="text-terminal-green font-mono">#{{ tag }}</span>
   </h1>
-  <p class="text-lg text-slate-600 dark:text-slate-400">
+  <p class="text-lg text-terminal-dim dark:text-terminal-dim">
     All posts tagged with "{{ tag }}"
   </p>
 </section>
@@ -32,11 +32,11 @@ eleventyComputed:
         </h2>
         
         {% if post.data.description %}
-        <p class="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{{ post.data.description }}</p>
+        <p class="text-terminal-dim dark:text-terminal-dim mb-4 line-clamp-2">{{ post.data.description }}</p>
         {% endif %}
         
         <div class="flex flex-wrap items-center gap-3 text-sm">
-          <time datetime="{{ post.date | htmlDateString }}" class="text-slate-500 dark:text-slate-500 flex items-center gap-1">
+          <time datetime="{{ post.date | htmlDateString }}" class="text-terminal-dim dark:text-terminal-dim flex items-center gap-1">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
@@ -44,17 +44,17 @@ eleventyComputed:
           </time>
           
           {% if post.data.tags %}
-            <span class="text-slate-300 dark:text-slate-600">•</span>
+            <span class="text-terminal-dim/50 dark:text-terminal-dim">•</span>
             {% for t in post.data.tags %}
               {% if t != "posts" %}
-              <a href="/tags/{{ t | slugify }}/" class="tag text-xs{% if t == tag %} bg-sky-200 dark:bg-sky-800{% endif %}">#{{ t }}</a>
+              <a href="/tags/{{ t | slugify }}/" class="tag text-xs{% if t == tag %} bg-terminal-green/20 dark:bg-terminal-green/20{% endif %}">#{{ t }}</a>
               {% endif %}
             {% endfor %}
           {% endif %}
         </div>
       </div>
       
-      <svg class="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-sky-500 group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-4 h-4 text-terminal-dim dark:text-terminal-border group-hover:text-terminal-green group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
       </svg>
     </div>
@@ -64,7 +64,7 @@ eleventyComputed:
 
 <!-- Navigation -->
 <div class="mt-12 flex justify-center gap-4">
-  <a href="/tags/" class="btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+  <a href="/tags/" class="btn bg-terminal-surface dark:bg-terminal-surface text-terminal-green dark:text-terminal-green hover:bg-terminal-border dark:hover:bg-terminal-border">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
     </svg>

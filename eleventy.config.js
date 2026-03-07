@@ -38,7 +38,6 @@ export default function (eleventyConfig) {
   // Passthrough copy
   eleventyConfig.addPassthroughCopy("./src/styles/output.css");
   eleventyConfig.addPassthroughCopy("./src/assets");
-  eleventyConfig.addPassthroughCopy("./src/assets/js");
 
   // Watch targets
   eleventyConfig.addWatchTarget("./src/styles/");
@@ -164,6 +163,15 @@ export default function (eleventyConfig) {
       const slug = data.page.fileSlug.replace(/^\d{4}-\d{2}-\d{2}-/, "");
       data.permalink = `/${year}/${month}/${slug}/`;
     }
+  });
+
+  
+  // Transform to add data-language and copy button to code blocks
+  eleventyConfig.addTransform("code-blocks", function(content) {
+    if (typeof content === "string") {
+      return content.replace(/<pre class="language-([^"]+)">/g, '<pre class="language-$1" data-language="$1"><button class="copy-btn" aria-label="Copy code">Copy</button>');
+    }
+    return content;
   });
 
   return {

@@ -4,18 +4,22 @@
 
 /* Base styles */
 html {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Custom styles for blog */
 
 /* Table of Contents styles */
 .toc {
-  @apply bg-terminal-light-bg dark:bg-terminal-surface/50 rounded-xl p-6 mb-8 border border-terminal-light-border dark:border-terminal-border backdrop-blur-sm;
+  @apply bg-terminal-light-surface dark:bg-terminal-surface rounded-xl p-6 mb-8 border border-terminal-light-border dark:border-terminal-border backdrop-blur-sm;
 }
 
 .toc-title {
-  @apply text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4 flex items-center gap-2;
+  @apply text-lg font-semibold text-terminal-darker dark:text-terminal-light-bg mb-4 flex items-center gap-2;
 }
 
 .toc-title::before {
@@ -31,7 +35,7 @@ html {
 }
 
 .toc-link {
-  @apply text-slate-600 dark:text-slate-400 hover:text-terminal-cyan dark:hover:text-terminal-green transition-colors;
+  @apply text-terminal-dim hover:text-terminal-cyan transition-colors;
 }
 
 /* Anchor links */
@@ -40,7 +44,7 @@ html {
 }
 
 .anchor-link {
-  @apply absolute -left-6 top-0 text-slate-400 hover:text-terminal-cyan dark:hover:text-terminal-green no-underline opacity-0 transition-opacity;
+  @apply absolute -left-6 top-0 text-terminal-dim hover:text-terminal-cyan no-underline opacity-0 transition-opacity;
 }
 
 h2:hover .anchor-link,
@@ -51,20 +55,20 @@ h4:hover .anchor-link {
 
 /* Tag styles */
 .tag {
-  @apply inline-block bg-terminal-green/10 dark:bg-terminal-green/20 text-terminal-green dark:text-terminal-cyan px-3 py-1 rounded-full text-sm font-medium hover:bg-terminal-green/20 dark:hover:bg-terminal-green/30 transition-all hover:scale-105;
+  @apply inline-block bg-terminal-green/10 dark:bg-terminal-green/10 text-terminal-green dark:text-terminal-green px-3 py-1 rounded-full text-sm font-medium hover:bg-terminal-green/20 dark:hover:bg-terminal-green/20 transition-all hover:scale-105;
 }
 
 /* Post content styles */
 .post-content {
-  @apply prose prose-slate dark:prose-invert max-w-none;
+  @apply prose prose-neutral dark:prose-invert max-w-none;
 }
 
 .post-content h2 {
-  @apply text-2xl font-bold text-slate-900 dark:text-slate-100 mt-12 mb-4 scroll-mt-20;
+  @apply text-2xl font-bold text-terminal-darker dark:text-terminal-light-bg mt-12 mb-4 scroll-mt-20;
 }
 
 .post-content h3 {
-  @apply text-xl font-semibold text-slate-800 dark:text-slate-200 mt-8 mb-3 scroll-mt-20;
+  @apply text-xl font-semibold text-terminal-dark dark:text-terminal-light-bg mt-8 mb-3 scroll-mt-20;
 }
 
 .post-content p {
@@ -79,37 +83,25 @@ h4:hover .anchor-link {
   @apply ml-4;
 }
 
-.post-content a {
-  @apply text-terminal-cyan dark:text-terminal-green hover:underline;
-}
 
 .post-content blockquote {
-  @apply border-l-4 border-terminal-green bg-terminal-light-bg dark:bg-terminal-surface/20 pl-4 py-2 pr-4 rounded-r-lg italic my-6;
+  @apply border-l-4 border-terminal-green bg-terminal-light-surface dark:bg-terminal-surface pl-4 py-2 pr-4 rounded-r-lg italic my-6;
 }
 
-.post-content pre {
-  @apply rounded-xl bg-slate-900 dark:bg-slate-950 p-4 overflow-x-auto my-6;
-}
 
-.post-content code {
-  @apply bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-1.5 py-0.5 rounded text-sm;
-}
 
-.post-content pre code {
-  @apply bg-transparent p-0 text-slate-100;
-}
 
 /* Post list styles */
 .post-card {
-  @apply border-b border-slate-200 dark:border-slate-800 py-8 last:border-b-0;
+  @apply border-b border-terminal-light-border dark:border-terminal-border py-8 last:border-b-0;
 }
 
 .post-card-title {
-  @apply text-2xl font-bold text-slate-900 dark:text-slate-100 transition-colors;
+  @apply text-2xl font-bold text-terminal-darker dark:text-terminal-light-bg transition-colors;
 }
 
 .group:hover .post-card-title {
-  @apply text-terminal-cyan dark:text-terminal-green;
+  @apply text-terminal-green dark:text-terminal-cyan;
 }
 
 .post-card:hover {
@@ -130,7 +122,7 @@ h4:hover .anchor-link {
 }
 
 .hero-subtitle {
-  @apply text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto;
+  @apply text-xl text-terminal-dim max-w-2xl mx-auto;
 }
 
 /* Reading progress bar */
@@ -149,7 +141,7 @@ h4:hover .anchor-link {
 }
 
 .btn-primary {
-  @apply bg-gradient-to-r from-terminal-green to-terminal-cyan text-white hover:from-terminal-green/90 hover:to-terminal-cyan/90;
+  @apply bg-terminal-green text-terminal-darker hover:bg-terminal-cyan;
 }
 
 /* Animated underline link */
@@ -180,7 +172,58 @@ h4:hover .anchor-link {
   @apply opacity-20;
 }
 
-/* View Transitions API */
-@view-transition {
-  navigation: auto;
+.post-content a {
+  @apply text-terminal-cyan hover:underline hover:text-terminal-green transition-colors;
+}
+
+.post-content pre {
+  @apply relative rounded-xl bg-terminal-darker border border-terminal-border p-4 overflow-x-auto my-6 transition-colors duration-300;
+}
+
+.post-content pre:hover {
+  box-shadow: 0 0 15px rgba(74, 222, 128, 0.05);
+}
+
+.post-content pre[data-language]::before {
+  content: attr(data-language);
+  @apply absolute top-0 right-0 px-3 py-1 text-xs font-medium text-terminal-green bg-terminal-surface border-b border-l border-terminal-border rounded-bl-lg rounded-tr-xl opacity-80;
+}
+
+.post-content code {
+  @apply bg-terminal-light-surface dark:bg-terminal-surface text-terminal-green px-1.5 py-0.5 rounded text-sm font-mono border border-terminal-light-border dark:border-terminal-border;
+}
+
+.post-content pre code {
+  @apply bg-transparent p-0 text-terminal-light-bg border-none font-mono text-sm;
+}
+
+/* Code block copy button */
+.copy-btn {
+  @apply absolute top-2 right-2 p-2 rounded-lg bg-terminal-surface border border-terminal-border text-terminal-dim hover:text-terminal-green opacity-0 transition-all duration-200 z-10;
+}
+
+pre:hover .copy-btn {
+  @apply opacity-100;
+}
+
+.copy-btn.copied {
+  @apply text-terminal-dark bg-terminal-green border-terminal-green;
+}
+
+/* Tables */
+.post-content table {
+  @apply w-full border-collapse border border-terminal-light-border dark:border-terminal-border my-6;
+}
+
+.post-content th {
+  @apply bg-terminal-light-surface dark:bg-terminal-surface border border-terminal-light-border dark:border-terminal-border px-4 py-2 text-left font-semibold text-terminal-darker dark:text-terminal-light-bg;
+}
+
+.post-content td {
+  @apply border border-terminal-light-border dark:border-terminal-border px-4 py-2;
+}
+
+/* Lists */
+.post-content ul > li::marker {
+  @apply text-terminal-dim;
 }
