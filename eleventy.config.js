@@ -29,6 +29,30 @@ async function imageShortcode(src, alt, sizes = "100vw", classes = "") {
   return eleventyImage.generateHTML(metadata, imageAttributes);
 }
 
+// Gallery image shortcode
+async function galleryImageShortcode(src, alt, sizes = "100vw", classes = "") {
+  if (alt === undefined) {
+    throw new Error(`Missing \`alt\` on image from: ${src}`);
+  }
+
+  let metadata = await eleventyImage(src, {
+    widths: [300, 600],
+    formats: ["webp", "jpeg"],
+    outputDir: "./_site/img/",
+    urlPath: "/img/",
+  });
+
+  let imageAttributes = {
+    alt,
+    sizes,
+    class: classes,
+    loading: "lazy",
+    decoding: "async",
+  };
+
+  return eleventyImage.generateHTML(metadata, imageAttributes);
+}
+
 export default function (eleventyConfig) {
   // Plugins
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
@@ -38,6 +62,7 @@ export default function (eleventyConfig) {
   // Passthrough copy
   eleventyConfig.addPassthroughCopy("./src/styles/output.css");
   eleventyConfig.addPassthroughCopy("./src/assets");
+  eleventyConfig.addPassthroughCopy("./src/assets/photos");
 
   // Watch targets
   eleventyConfig.addWatchTarget("./src/styles/");
@@ -46,6 +71,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addLiquidShortcode("image", imageShortcode);
   eleventyConfig.addJavaScriptFunction("image", imageShortcode);
+
+  eleventyConfig.addNunjucksAsyncShortcode("galleryImage", galleryImageShortcode);
+  eleventyConfig.addLiquidShortcode("galleryImage", galleryImageShortcode);
+  eleventyConfig.addJavaScriptFunction("galleryImage", galleryImageShortcode);
 
   // Date filters
   eleventyConfig.addFilter("readableDate", (dateObj, format) => {

@@ -227,3 +227,31 @@ pre:hover .copy-btn {
 .post-content ul > li::marker {
   @apply text-terminal-dim;
 }
+
+/* Masonry Gallery Styles */
+.photo-gallery {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .photo-gallery {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .photo-gallery {
+    column-count: 3;
+  }
+}
+
+.break-inside-avoid {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Lightbox specific overrides */
+body.lightbox-open {
+  overflow: hidden;
+}

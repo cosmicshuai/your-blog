@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Terminal CLI",
+    "description": "A fast, minimalist command-line interface framework for building modern terminal applications",
+    "url": "https://github.com/cosmic/terminal-cli",
+    "tags": ["python", "cli", "async"],
+    "status": "active"
+  },
+  {
+    "name": "DataVault",
+    "description": "Encrypted data storage solution with zero-knowledge architecture and real-time sync",
+    "url": "https://github.com/cosmic/datavault",
+    "tags": ["rust", "cryptography", "database"],
+    "status": "active"
+  },
+  {
+    "name": "Neural Playground",
+    "description": "Interactive visualization toolkit for exploring neural network architectures and training dynamics",
+    "url": "https://github.com/cosmic/neural-playground",
+    "tags": ["python", "ml", "visualization"],
+    "status": "wip"
+  }
+]

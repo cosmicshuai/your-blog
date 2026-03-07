@@ -1,0 +1,88 @@
+---
+layout: base.njk
+title: Projects
+---
+
+<!-- Terminal Header Section -->
+<section class="mb-16">
+  <div class="terminal-window bg-terminal-surface border border-terminal-border rounded-lg overflow-hidden max-w-3xl mx-auto shadow-2xl">
+    <div class="terminal-chrome bg-terminal-darker px-4 py-3 flex items-center gap-2 border-b border-terminal-border">
+      <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+      <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+      <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+    </div>
+    <div class="terminal-body p-6 md:p-8 font-mono text-left">
+      <div class="flex items-center gap-2 text-lg md:text-xl text-terminal-light-surface">
+        <span class="text-terminal-green select-none">$</span>
+        <span class="text-terminal-light-surface">ls ~/projects</span>
+      </div>
+      <p class="mt-4 text-terminal-dim text-sm md:text-base">Showcasing projects that explore ideas at the intersection of systems, performance, and human-computer interaction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Grid Section -->
+<section class="max-w-4xl mx-auto">
+  {% if projects.length === 0 %}
+    <!-- Empty State -->
+    <div class="text-center py-20 bg-terminal-surface/50 rounded-2xl border border-dashed border-terminal-border">
+      <div class="font-mono mb-4">
+        <span class="text-terminal-green">$</span>
+        <span class="text-terminal-dim">ls</span>
+      </div>
+      <p class="text-terminal-dim mb-2">No projects found</p>
+      <code class="bg-terminal-darker px-3 py-1 rounded text-sm text-terminal-green inline-block">src/_data/projects.json</code>
+    </div>
+  {% else %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {% for project in projects %}
+        <a 
+          href="{{ project.url }}" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="View {{ project.name }}"
+          class="glow group project-card block bg-terminal-surface border border-terminal-border rounded-xl p-6 hover:border-terminal-green/50 transition-all duration-300"
+        >
+          <!-- Project Header -->
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <h3 class="text-lg font-medium text-terminal-light-surface group-hover:text-terminal-green transition-colors font-mono">
+              {{ project.name }}
+            </h3>
+            
+            <!-- Status Indicator -->
+            <div class="flex-shrink-0 flex items-center gap-2">
+              {% if project.status === "active" %}
+                <span class="w-2 h-2 rounded-full bg-terminal-green" aria-label="Active project"></span>
+              {% elif project.status === "wip" %}
+                <span class="w-2 h-2 rounded-full bg-yellow-500/80" aria-label="Work in progress"></span>
+              {% else %}
+                <span class="w-2 h-2 rounded-full bg-terminal-dim" aria-label="Archived project"></span>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-terminal-dim text-sm mb-4 line-clamp-2 group-hover:text-terminal-dim transition-colors">
+            {{ project.description }}
+          </p>
+
+          <!-- Tags -->
+          {% if project.tags %}
+            <div class="flex flex-wrap gap-2">
+              {% for tag in project.tags %}
+                <span class="text-xs text-terminal-green bg-terminal-green/10 px-2 py-1 rounded-full font-mono group-hover:bg-terminal-green/20 transition-colors">
+                  {{ tag }}
+                </span>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <!-- External Link Icon -->
+          <svg class="w-4 h-4 text-terminal-dim group-hover:text-terminal-green group-hover:translate-x-1 transition-all absolute top-6 right-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>

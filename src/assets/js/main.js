@@ -120,4 +120,140 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(typeTitle, 300);
 });
 // [TASK 9: Lightbox]
+document.addEventListener('DOMContentLoaded', () => {
+  const galleryImages = document.querySelectorAll('.gallery-image');
+  if (galleryImages.length === 0) return;
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-image');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const btnClose = document.getElementById('lightbox-close');
+  const btnPrev = document.getElementById('lightbox-prev');
+  const btnNext = document.getElementById('lightbox-next');
+  
+  if (!lightbox || !lightboxImg) return;
+
+  let currentIndex = 0;
+  let lastFocusedElement = null;
+
+  const imagesData = Array.from(galleryImages).map((img, index) => {
+    const parent = img.closest('.photo-item');
+    const captionEl = parent ? parent.querySelector('.photo-caption') : null;
+    return {
+      src: img.currentSrc || img.src,
+      alt: img.alt,
+      caption: captionEl ? captionEl.getAttribute('data-caption') : '',
+      element: img
+    };
+  });
+
+  function openLightbox(index) {
+    lastFocusedElement = document.activeElement;
+    currentIndex = index;
+    updateLightboxContent();
+    
+    lightbox.classList.remove('hidden');
+    setTimeout(() => {
+      lightbox.classList.remove('opacity-0');
+      lightbox.classList.add('opacity-100');
+    }, 10);
+    
+    document.body.classList.add('lightbox-open');
+    btnClose.focus();
+    
+    document.addEventListener('keydown', handleKeydown);
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('opacity-100');
+    lightbox.classList.add('opacity-0');
+    
+    setTimeout(() => {
+      lightbox.classList.add('hidden');
+      document.body.classList.remove('lightbox-open');
+    }, 300);
+    
+    document.removeEventListener('keydown', handleKeydown);
+    
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+  }
+
+  function updateLightboxContent() {
+    const data = imagesData[currentIndex];
+    lightboxImg.src = data.src;
+    lightboxImg.alt = data.alt;
+    
+    if (data.caption) {
+      lightboxCaption.textContent = data.caption;
+      lightboxCaption.classList.remove('hidden');
+    } else {
+      lightboxCaption.classList.add('hidden');
+    }
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % imagesData.length;
+    updateLightboxContent();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + imagesData.length) % imagesData.length;
+    updateLightboxContent();
+  }
+
+  galleryImages.forEach((img, index) => {
+    const parent = img.closest('.photo-item');
+    if (parent) {
+      parent.setAttribute('tabindex', '0');
+      parent.setAttribute('role', 'button');
+      parent.addEventListener('click', () => openLightbox(index));
+      parent.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(index);
+        }
+      });
+    } else {
+      img.addEventListener('click', () => openLightbox(index));
+    }
+  });
+
+  btnClose.addEventListener('click', closeLightbox);
+  btnNext.addEventListener('click', nextImage);
+  btnPrev.addEventListener('click', prevImage);
+  
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+      closeLightbox();
+    }
+  });
+
+  function handleKeydown(e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    } else if (e.key === 'ArrowRight') {
+      nextImage();
+    } else if (e.key === 'ArrowLeft') {
+      prevImage();
+    } else if (e.key === 'Tab') {
+      const focusableElements = [btnClose, btnPrev, btnNext].filter(el => el != null);
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  }
+});
 // [TASK 11: Scroll Features]
