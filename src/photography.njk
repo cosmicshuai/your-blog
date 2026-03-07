@@ -23,7 +23,7 @@ title: Photography
   {% else %}
     <div class="photo-gallery">
       {% for photo in photos %}
-        <div class="photo-item mb-4 cursor-pointer relative group break-inside-avoid">
+        <div class="photo-item mb-4 cursor-pointer relative group break-inside-avoid" data-reveal>
           {% galleryImage photo.src, photo.alt, "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw", "gallery-image w-full h-auto rounded border border-terminal-border transition-all duration-300 group-hover:border-terminal-green group-hover:opacity-90" %}
           {% if photo.caption %}
             <div class="hidden photo-caption" data-caption="{{ photo.caption }}"></div>

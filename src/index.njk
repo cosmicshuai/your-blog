@@ -40,7 +40,7 @@ layout: base.njk
 </section>
 
 <!-- Stats or Info -->
-<div class="flex justify-center gap-8 mb-16 text-center font-mono">
+<div class="flex justify-center gap-8 mb-16 text-center font-mono" data-reveal>
   <div>
     <div class="text-3xl font-bold text-terminal-green">{{ collections.posts.length }}</div>
     <div class="text-sm text-terminal-dim">Posts</div>
@@ -69,7 +69,7 @@ layout: base.njk
   {% else %}
     <div class="space-y-0">
       {% for post in postslist %}
-      <article class="post-card group border-b border-terminal-border hover:bg-terminal-surface/30 transition-colors p-6 -mx-6 rounded-xl">
+      <article class="post-card group border-b border-terminal-border hover:bg-terminal-surface/30 transition-colors p-6 -mx-6 rounded-xl" data-reveal>
         <div class="flex items-start justify-between gap-4">
           <div class="flex-1">
             <h3 class="post-card-title mb-3 text-lg font-medium text-terminal-light-surface group-hover:text-terminal-green transition-colors">

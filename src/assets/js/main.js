@@ -257,3 +257,80 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 // [TASK 11: Scroll Features]
+
+// --- Scroll-to-Top Button ---
+document.addEventListener('DOMContentLoaded', () => {
+  // Create scroll-to-top button dynamically
+  const scrollBtn = document.createElement('button');
+  scrollBtn.id = 'scroll-to-top';
+  scrollBtn.className = 'hidden fixed bottom-8 right-8 z-40 bg-terminal-surface border border-terminal-border text-terminal-green hover:bg-terminal-green hover:text-terminal-darker p-3 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-terminal-green';
+  scrollBtn.setAttribute('aria-label', 'Scroll to top');
+  scrollBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>';
+  document.body.appendChild(scrollBtn);
+
+  let scrollTicking = false;
+  
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        if (window.scrollY > 300) {
+          scrollBtn.classList.remove('hidden');
+          scrollBtn.classList.remove('opacity-0', 'translate-y-2');
+          scrollBtn.classList.add('opacity-100', 'translate-y-0');
+        } else {
+          scrollBtn.classList.remove('opacity-100', 'translate-y-0');
+          scrollBtn.classList.add('opacity-0', 'translate-y-2');
+          setTimeout(() => {
+            scrollBtn.classList.add('hidden');
+          }, 300);
+        }
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  });
+  
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ 
+      top: 0, 
+      behavior: prefersReducedMotion ? 'auto' : 'smooth' 
+    });
+  });
+});
+
+// --- Scroll-Reveal Animations ---
+document.addEventListener('DOMContentLoaded', () => {
+  const revealElements = document.querySelectorAll('[data-reveal]');
+  if (revealElements.length === 0) return;
+
+  // Add initial hidden state
+  revealElements.forEach(el => {
+    el.classList.add('reveal-hidden');
+  });
+
+  // Skip animations if user prefers reduced motion
+  if (prefersReducedMotion) {
+    revealElements.forEach(el => {
+      el.classList.remove('reveal-hidden');
+      el.classList.add('revealed');
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('reveal-hidden');
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target); // once: true
+      }
+    });
+  }, { 
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  revealElements.forEach(el => {
+    observer.observe(el);
+  });
+});
