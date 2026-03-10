@@ -97,6 +97,23 @@ export default function (eleventyConfig) {
     return String(new Date(dateObj).getMonth() + 1).padStart(2, "0");
   });
 
+  eleventyConfig.addFilter("isValidTagSlug", (tag) => {
+    const slug = String(tag).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    return slug && slug !== "tags";
+  });
+
+  eleventyConfig.addFilter("slugifySafe", (tag) => {
+    const slug = String(tag).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    return slug && slug !== "tags" ? slug : "";
+  });
+
+  eleventyConfig.addFilter("getValidTagList", (tagList) => {
+    return tagList.filter((tag) => {
+      const slug = String(tag).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      return slug && slug !== "tags";
+    });
+  });
+
   // Collection: Posts (sorted by date, reverse chronological)
   eleventyConfig.addCollection("posts", (collection) => {
     return collection.getFilteredByGlob("./src/posts/*.md").sort((a, b) => {
@@ -113,9 +130,29 @@ export default function (eleventyConfig) {
         if (typeof tags === "string") {
           tags = [tags];
         }
-        tags = tags.filter((tag) => !["posts", "all"].includes(tag));
+        tags = tags.filter((tag) => !["posts", "all", "tags"].includes(tag));
         for (const tag of tags) {
           tagsSet.add(tag);
+        }
+      }
+    });
+    return Array.from(tagsSet).sort();
+  });
+
+  eleventyConfig.addCollection("validTagList", (collection) => {
+    const tagsSet = new Set();
+    collection.getAll().forEach((item) => {
+      if ("tags" in item.data) {
+        let tags = item.data.tags;
+        if (typeof tags === "string") {
+          tags = [tags];
+        }
+        tags = tags.filter((tag) => !["posts", "all", "tags"].includes(tag));
+        for (const tag of tags) {
+          const slug = String(tag).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+          if (slug && slug !== "tags") {
+            tagsSet.add(tag);
+          }
         }
       }
     });

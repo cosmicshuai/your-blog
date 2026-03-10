@@ -10,11 +10,11 @@ permalink: /tags/
     All Tags
   </h1>
   <p class="text-lg text-terminal-dim dark:text-terminal-dim max-w-xl mx-auto">
-    Browse posts by topic. {{ collections.tagList.length }} topics to explore.
+    Browse posts by topic. {{ collections.validTagList.length }} topics to explore.
   </p>
 </section>
 
-{% set tagList = collections.tagList %}
+{% set tagList = collections.validTagList %}
 
 {% if tagList.length === 0 %}
   <div class="text-center py-16 bg-terminal-surface dark:bg-terminal-surface rounded-2xl border border-terminal-border dark:border-terminal-border">
