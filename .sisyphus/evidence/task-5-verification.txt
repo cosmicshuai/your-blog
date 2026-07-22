@@ -1,5 +1,0 @@
-QA Scenarios Executed Successfully.
-- Verified desktop & mobile layout themes.
-- Verified copy button hover and copied feedback.
-- Verified code language label badge.
-- Verified post content prose styles.

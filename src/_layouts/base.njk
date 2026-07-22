@@ -2,6 +2,21 @@
 <html lang="en" class="scroll-smooth">
 {% include "head.njk" %}
 <body class="min-h-screen bg-terminal-light-bg dark:bg-terminal-dark text-terminal-dim dark:text-terminal-light-bg transition-colors duration-300">
+  
+  <!-- Premium Ambient Background Layers -->
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <!-- Dot Grid -->
+    <div class="absolute inset-0 dot-grid opacity-50 dark:opacity-40"></div>
+    
+    <!-- Floating Gradient Orbs -->
+    <div class="absolute top-[-10%] right-[-5%] w-[40vw] h-[40vw] rounded-full bg-terminal-green/5 dark:bg-terminal-green/10 blur-[100px] animate-float"></div>
+    
+    <div class="absolute bottom-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full bg-terminal-cyan/5 dark:bg-terminal-cyan/10 blur-[120px] animate-float-delayed"></div>
+    
+    <!-- Grain Overlay -->
+    <div class="absolute inset-0 grain-overlay"></div>
+  </div>
+
   {% include "nav.njk" %}
 
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

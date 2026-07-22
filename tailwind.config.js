@@ -9,6 +9,11 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'glow': '0 0 20px -5px rgba(0, 0, 0, 0.3)',
+        'glow-green': '0 0 20px -5px rgba(74, 222, 128, 0.4)',
+        'glow-cyan': '0 0 20px -5px rgba(34, 211, 238, 0.4)',
+      },
       colors: {
         terminal: {
           green: '#4ade80',
@@ -30,6 +35,10 @@ export default {
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
+        'float': 'float 20s ease-in-out infinite',
+        'float-delayed': 'float 20s ease-in-out 10s infinite',
+        'shimmer': 'shimmer 3s linear infinite',
+        'pulse-glow': 'pulse-glow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         fadeIn: {
@@ -39,6 +48,23 @@ export default {
         slideUp: {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+        },
+        shimmer: {
+          from: { backgroundPosition: '200% 0' },
+          to: { backgroundPosition: '-200% 0' },
+        },
+        'pulse-glow': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '.5' },
+        },
+        gradient: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
         },
       },
       typography: {

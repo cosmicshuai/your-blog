@@ -3,105 +3,236 @@ layout: base.njk
 ---
 
 <!-- Hero Section -->
-<section class="hero mb-16 relative">
-  <div class="terminal-window bg-terminal-surface border border-terminal-border rounded-lg overflow-hidden max-w-2xl mx-auto shadow-2xl">
-    <div class="terminal-chrome bg-terminal-darker px-4 py-3 flex items-center gap-2 border-b border-terminal-border">
-      <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-      <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-      <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-    </div>
-    <div class="terminal-body p-6 md:p-8 font-mono text-left min-h-[160px]">
-      <div class="flex items-center gap-2 text-lg sm:text-xl md:text-2xl text-terminal-light-surface">
-        <span class="text-terminal-green select-none">$</span>
-        <h1 class="hero-title inline-block m-0 font-normal !bg-none !text-terminal-light-surface dark:!text-terminal-light-surface" data-text="{{ site.title }}" aria-live="polite" style="-webkit-text-fill-color: initial;">
-          <span class="sr-only">{{ site.title }}</span>
-          <span class="typing-title-text" aria-hidden="true"></span>
-          <span class="typing-cursor hidden text-terminal-green" style="animation: blink 1s step-end infinite;">▌</span>
-        </h1>
-      </div>
-      <p class="hero-subtitle mt-4 text-terminal-dim min-h-[1.5em] md:text-lg" data-text="{{ site.description }}" aria-live="polite">
-        <span class="sr-only">{{ site.description }}</span>
-        <span class="typing-subtitle-text" aria-hidden="true"></span>
-      </p>
-    </div>
+<section class="hero relative pt-8 pb-20 md:pt-16 md:pb-28">
+  <!-- Ambient background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-terminal-green/20 via-terminal-cyan/10 to-purple-500/20 blur-[100px] rounded-full pointer-events-none opacity-50 dark:opacity-70"></div>
+
+  <!-- Status Pill -->
+  <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-terminal-surface/60 border border-terminal-border/80 text-xs font-mono text-terminal-green mb-8 shadow-sm backdrop-blur-md relative z-10">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-terminal-green opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-terminal-green"></span>
+    </span>
+    <span class="tracking-wide uppercase">System Online</span>
   </div>
-  
-  <div class="mt-8 flex justify-center gap-4">
-    <a href="#posts" class="btn bg-terminal-green text-terminal-dark hover:bg-terminal-green/90 border border-transparent font-medium px-6 py-2 rounded-md transition-colors flex items-center gap-2">
-      Start Reading
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-    </a>
-    <a href="/tags/" class="btn bg-terminal-surface text-terminal-light-surface border border-terminal-border hover:border-terminal-dim font-medium px-6 py-2 rounded-md transition-colors">
-      Browse Tags
-    </a>
+
+  <!-- Terminal Window -->
+  <div class="relative group max-w-3xl mx-auto z-10" id="explore">
+    <!-- Glowing shadow -->
+    <div class="absolute -inset-0.5 bg-gradient-to-r from-terminal-green/30 to-terminal-cyan/30 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+    
+    <div class="terminal-window relative bg-[#0a0a0f] border border-white/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl">
+      <!-- Grid pattern overlay -->
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none"></div>
+      
+      <!-- Chrome -->
+      <div class="terminal-chrome bg-white/5 border-b border-white/10 px-5 py-3.5 flex items-center justify-between relative z-10">
+        <div class="flex items-center gap-2.5">
+          <div class="w-3.5 h-3.5 rounded-full bg-red-500/90 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)] hover:scale-110 transition-transform"></div>
+          <div class="w-3.5 h-3.5 rounded-full bg-yellow-500/90 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)] hover:scale-110 transition-transform"></div>
+          <div class="w-3.5 h-3.5 rounded-full bg-green-500/90 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)] hover:scale-110 transition-transform"></div>
+        </div>
+        <div class="text-[11px] text-terminal-dim/70 font-mono font-medium tracking-widest uppercase">bash — 80x24</div>
+      </div>
+      
+      <!-- Body -->
+      <div class="terminal-body p-6 md:p-10 font-mono text-left min-h-[220px] relative z-10">
+        <!-- Fake History -->
+        <div class="mb-5 opacity-40 select-none hidden sm:block">
+          <div class="flex gap-2.5 text-sm">
+            <span class="text-terminal-cyan">guest@system</span>
+            <span class="text-terminal-dim">~/</span>
+            <span class="text-terminal-green">$</span>
+            <span class="text-white/80">cat manifesto.txt</span>
+          </div>
+          <div class="mt-1.5 text-sm text-terminal-dim/80">Initiating secure connection... done.</div>
+          <div class="mt-1 text-sm text-terminal-dim/80">Loading cryptographic keys... verified.</div>
+        </div>
+        
+        <!-- Current Prompt -->
+        <div class="flex flex-wrap items-baseline gap-2.5 text-xl sm:text-2xl md:text-3xl text-white mb-3">
+          <span class="text-terminal-cyan text-base md:text-xl hidden sm:inline select-none">guest@system</span>
+          <span class="text-terminal-dim text-base md:text-xl hidden sm:inline select-none">~/</span>
+          <span class="text-terminal-green font-bold select-none">$</span>
+          <h1 class="hero-title inline-block m-0 font-bold !bg-none tracking-tight !text-white" data-text="{{ site.title }}" aria-live="polite" style="-webkit-text-fill-color: initial;">
+            <span class="sr-only">{{ site.title }}</span>
+            <span class="typing-title-text" aria-hidden="true"></span>
+            <span class="typing-cursor hidden text-terminal-green drop-shadow-[0_0_8px_rgba(74,222,128,0.8)]" style="animation: blink 1s step-end infinite;">▌</span>
+          </h1>
+        </div>
+        <p class="hero-subtitle mt-2 text-terminal-dim min-h-[1.5em] text-sm sm:text-base md:text-lg sm:pl-[200px]" data-text="{{ site.description }}" aria-live="polite">
+          <span class="sr-only">{{ site.description }}</span>
+          <span class="typing-subtitle-text" aria-hidden="true"></span>
+        </p>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/10 bg-black/40 px-5 py-2.5 flex justify-between items-center text-[10px] sm:text-xs font-mono text-terminal-dim/80 relative z-10">
+        <div class="flex gap-6">
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-terminal-cyan shadow-[0_0_5px_currentColor]"></span> POSTS: {{ collections.posts.length | default(0) }}</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_5px_currentColor]"></span> TOPICS: {{ collections.tagList.length | default(0) }}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 shadow-[0_0_5px_currentColor]"></span> PHOTOS: {{ photos.length | default(0) }}
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTAs -->
+    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 relative z-10">
+      <a href="{% if collections.posts.length > 0 %}#posts{% else %}#void{% endif %}" class="group relative px-8 py-3.5 font-mono font-semibold rounded-xl overflow-hidden bg-gradient-to-r from-terminal-green to-terminal-cyan text-[#0a0a0f] hover:shadow-[0_0_25px_rgba(74,222,128,0.4)] transition-all duration-300">
+        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+        <span class="relative flex items-center justify-center gap-2">
+          Initiate Sequence
+          <svg class="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </span>
+      </a>
+      <a href="/tags/" class="group relative px-8 py-3.5 font-mono font-medium rounded-xl bg-terminal-surface/30 border border-terminal-border/80 hover:border-terminal-cyan/60 text-terminal-light-surface backdrop-blur-md transition-all duration-300">
+        <div class="absolute inset-0 rounded-xl shadow-[inset_0_0_20px_rgba(34,211,238,0)] group-hover:shadow-[inset_0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300"></div>
+        <span class="relative flex items-center justify-center gap-2">
+          Browse Directory
+        </span>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- Stats or Info -->
-<div class="flex justify-center gap-8 mb-16 text-center font-mono" data-reveal>
-  <div>
-    <div class="text-3xl font-bold text-terminal-green">{{ collections.posts.length }}</div>
-    <div class="text-sm text-terminal-dim">Posts</div>
-  </div>
-  <div class="w-px bg-terminal-border"></div>
-  <div>
-    <div class="text-3xl font-bold text-terminal-green">{{ collections.tagList.length }}</div>
-    <div class="text-sm text-terminal-dim">Topics</div>
-  </div>
-</div>
-
-<!-- Posts Section -->
-<section id="posts" class="max-w-3xl mx-auto">
-  <div class="flex items-center gap-4 mb-8">
-    <h2 class="text-2xl font-bold text-terminal-light-surface font-mono">Latest Posts</h2>
-    <div class="flex-1 h-px bg-gradient-to-r from-terminal-border to-transparent"></div>
-  </div>
-  
+<!-- Content Section -->
+<section id="posts" class="max-w-4xl mx-auto mt-8 mb-24">
   {% set postslist = collections.posts %}
   
   {% if postslist.length === 0 %}
-    <div class="text-center py-16 bg-terminal-surface rounded-2xl border border-dashed border-terminal-border">
-      <p class="text-terminal-dim mb-4">No posts yet.</p>
-      <code class="bg-terminal-darker px-3 py-1 rounded text-sm text-terminal-green">src/posts/</code>
-    </div>
-  {% else %}
-    <div class="space-y-0">
-      {% for post in postslist %}
-      <article class="post-card group border-b border-terminal-border hover:bg-terminal-surface/30 transition-colors p-6 -mx-6 rounded-xl" data-reveal>
-        <div class="flex items-start justify-between gap-4">
-          <div class="flex-1">
-            <h3 class="post-card-title mb-3 text-lg font-medium text-terminal-light-surface group-hover:text-terminal-green transition-colors">
-              <a href="{{ post.url }}" class="block">{{ post.data.title }}</a>
-            </h3>
-            
-            {% if post.data.description %}
-            <p class="text-terminal-dim mb-4 line-clamp-2">{{ post.data.description }}</p>
-            {% endif %}
-            
-            <div class="flex flex-wrap items-center gap-3 text-sm font-mono">
-              <time datetime="{{ post.date | htmlDateString }}" class="text-terminal-dim flex items-center gap-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-                {{ post.date | readableDate }}
-              </time>
-              
-              {% if post.data.tags %}
-                <span class="text-terminal-border">•</span>
-                {% for tag in post.data.tags %}
-                  {% if tag != "posts" %}
-                  <a href="/tags/{{ tag | slugify }}/" class="tag text-xs text-terminal-green bg-terminal-green/10 hover:bg-terminal-green/20 px-2 py-0.5 rounded-full transition-colors">#{{ tag }}</a>
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
+    <!-- Fancy Empty Void (Bento Grid) -->
+    <div id="void" class="py-12" data-reveal>
+      <div class="text-center mb-16">
+        <div class="relative inline-flex items-center justify-center mb-6 mt-8">
+          <div class="text-[140px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-b from-terminal-surface/80 to-transparent select-none filter blur-[1px]">0</div>
+          <div class="absolute inset-0 flex items-center justify-center text-[140px] leading-none font-bold text-terminal-green/20 blur-xl">0</div>
+          <div class="absolute inset-0 flex items-center justify-center text-5xl text-terminal-cyan animate-pulse">∅</div>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">The void is quiet.</h2>
+        <p class="text-terminal-dim/90 max-w-lg mx-auto text-lg">Systems are currently undergoing a structural recraft. Signal will resume shortly. In the meantime, explore the archives below.</p>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Projects Card -->
+        <a href="/projects/" class="group relative p-8 rounded-3xl bg-terminal-surface/20 border border-white/5 hover:border-terminal-green/40 backdrop-blur-md overflow-hidden flex flex-col justify-between min-h-[260px] md:col-span-2 transition-all duration-500 hover:shadow-[0_10px_40px_rgba(74,222,128,0.08)] hover:-translate-y-1">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-terminal-green/10 rounded-full blur-[80px] group-hover:bg-terminal-green/20 transition-colors duration-700"></div>
+          <div class="relative z-10">
+            <div class="w-12 h-12 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center mb-6 text-terminal-green group-hover:scale-110 transition-transform duration-500">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
             </div>
+            <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Projects</h3>
+            <p class="text-terminal-dim mb-6">Active deployments and structural experiments.</p>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2.5">
+            {% for project in projects %}
+              {% if loop.index0 < 2 %}
+              <div class="flex items-center gap-3 text-sm bg-black/30 p-3 rounded-xl border border-white/5 group-hover:border-white/10 transition-colors">
+                <span class="relative flex h-2 w-2">
+                  <span class="{% if project.status == 'active' %}animate-ping{% endif %} absolute inline-flex h-full w-full rounded-full {% if project.status == 'active' %}bg-terminal-green{% else %}bg-yellow-500{% endif %} opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 {% if project.status == 'active' %}bg-terminal-green{% else %}bg-yellow-500{% endif %}"></span>
+                </span>
+                <span class="text-terminal-light-surface font-mono font-medium">{{ project.name }}</span>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </a>
+
+        <!-- Photos Card -->
+        <a href="/photography/" class="group relative p-8 rounded-3xl bg-terminal-surface/20 border border-white/5 hover:border-terminal-cyan/40 backdrop-blur-md overflow-hidden min-h-[260px] transition-all duration-500 hover:shadow-[0_10px_40px_rgba(34,211,238,0.08)] hover:-translate-y-1 flex flex-col">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-terminal-cyan/10 rounded-full blur-[80px] group-hover:bg-terminal-cyan/20 transition-colors duration-700"></div>
+          <div class="relative z-10 flex-1">
+            <div class="w-12 h-12 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center mb-6 text-terminal-cyan group-hover:scale-110 transition-transform duration-500">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Photography</h3>
+            <p class="text-terminal-dim mb-6">{{ photos.length | default(0) }} captures.</p>
           </div>
           
-          <svg class="w-5 h-5 text-terminal-dim group-hover:text-terminal-green group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
+          <div class="relative z-10 flex gap-2.5 overflow-hidden [mask-image:linear-gradient(to_right,white_80%,transparent)] mt-auto">
+            {% for photo in photos %}
+              {% if loop.index0 < 3 %}
+              <div class="w-[72px] h-[72px] rounded-xl bg-black/50 border border-white/10 flex-shrink-0 overflow-hidden">
+                <img src="{{ photo.src }}" alt="{{ photo.alt }}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out">
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </a>
+
+        <!-- About Card -->
+        <a href="/about/" class="group relative p-8 rounded-3xl bg-terminal-surface/20 border border-white/5 hover:border-purple-500/40 backdrop-blur-md overflow-hidden min-h-[220px] transition-all duration-500 hover:shadow-[0_10px_40px_rgba(168,85,247,0.08)] hover:-translate-y-1">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative z-10 flex flex-col h-full justify-between">
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Identify</h3>
+              <p class="text-terminal-dim/90 line-clamp-3 mb-6">Senior engineer crafting digital experiences. Read the full manifesto.</p>
+            </div>
+            <div class="inline-flex items-center text-sm font-mono font-medium text-purple-400 group-hover:text-purple-300 w-max">
+              whoami <span class="group-hover:translate-x-1.5 transition-transform duration-300 ml-2">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- RSS Card -->
+        <a href="/feed.xml" class="group relative p-8 rounded-3xl bg-gradient-to-br from-terminal-surface/40 to-black/60 border border-white/5 hover:border-white/20 backdrop-blur-md overflow-hidden min-h-[220px] md:col-span-2 transition-all duration-500 hover:shadow-[0_10px_40px_rgba(255,255,255,0.05)] hover:-translate-y-1">
+          <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNykiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom_right,white,transparent)] opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 h-full">
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-2 tracking-tight flex items-center gap-3">
+                <svg class="w-6 h-6 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.739-23.98-24-24.026v4.838z"/></svg>
+                Establish Uplink
+              </h3>
+              <p class="text-terminal-dim/90">Subscribe to the frequency via RSS.</p>
+            </div>
+            <span class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-sm font-mono text-terminal-light-surface group-hover:bg-white/10 transition-colors inline-block whitespace-nowrap shadow-inner">
+              /feed.xml
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  {% else %}
+    <div class="flex items-center justify-between mb-12">
+      <h2 class="text-3xl font-bold text-white tracking-tight">Latest Dispatches</h2>
+      <a href="/posts/" class="text-sm font-mono text-terminal-cyan hover:text-terminal-green transition-colors">View all →</a>
+    </div>
+
+    <div class="relative pl-6 md:pl-10 space-y-12 before:absolute before:inset-y-0 before:left-[11px] md:before:left-[19px] before:w-px before:bg-gradient-to-b before:from-terminal-green/40 before:via-white/10 before:to-transparent">
+      {% for post in postslist %}
+      <article class="relative group" data-reveal>
+        <!-- Timeline Dot -->
+        <div class="absolute -left-[30px] md:-left-[46px] top-2.5 w-3.5 h-3.5 rounded-full bg-[#0a0a0f] border-2 border-white/20 group-hover:border-terminal-green group-hover:shadow-[0_0_12px_rgba(74,222,128,0.6)] transition-all duration-300 z-10"></div>
+        
+        <div class="bg-terminal-surface/10 border border-transparent group-hover:border-white/10 group-hover:bg-white/[0.02] rounded-3xl p-6 md:p-8 transition-all duration-500 hover:shadow-2xl">
+          <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-3 mb-4">
+            <h3 class="post-card-title text-2xl font-bold text-white group-hover:text-terminal-green transition-colors tracking-tight">
+              <a href="{{ post.url }}" class="block before:absolute before:inset-0">{{ post.data.title }}</a>
+            </h3>
+            <time datetime="{{ post.date | htmlDateString }}" class="text-sm font-mono text-terminal-dim/70 shrink-0">
+              {{ post.date | readableDate }}
+            </time>
+          </div>
+          
+          {% if post.data.description %}
+          <p class="text-terminal-dim/90 mb-6 text-lg leading-relaxed">{{ post.data.description }}</p>
+          {% endif %}
+          
+          <div class="flex flex-wrap items-center gap-2.5 relative z-20">
+            {% if post.data.tags %}
+              {% for tag in post.data.tags %}
+                {% if tag != "posts" %}
+                <a href="/tags/{{ tag | slugify }}/" class="text-[13px] font-mono font-medium text-terminal-cyan bg-terminal-cyan/10 hover:bg-terminal-cyan/20 px-3 py-1 rounded-full border border-terminal-cyan/20 transition-colors">#{{ tag }}</a>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
         </div>
       </article>
       {% endfor %}
@@ -109,19 +240,31 @@ layout: base.njk
   {% endif %}
 </section>
 
-<!-- Newsletter or CTA Section -->
-<section class="mt-20 text-center">
-  <div class="bg-gradient-to-br from-terminal-surface to-terminal-darker rounded-2xl p-8 md:p-12 border border-terminal-border relative overflow-hidden">
-    <div class="absolute inset-0 bg-terminal-green/5 opacity-50"></div>
-    <div class="relative z-10">
-      <h2 class="text-2xl font-bold text-terminal-light-surface mb-4 font-mono">Stay Updated</h2>
-      <p class="text-terminal-dim mb-6">Subscribe to the RSS feed to get notified of new posts.</p>
-      <a href="/feed.xml" class="btn inline-flex items-center gap-2 bg-terminal-green text-terminal-dark hover:bg-terminal-green/90 px-6 py-3 rounded-md font-medium transition-colors">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.739-23.98-24-24.026v4.838z"/>
-        </svg>
-        Subscribe via RSS
-      </a>
+<!-- Bottom CTA Section -->
+<section class="mt-32 mb-16 text-center max-w-4xl mx-auto px-4" data-reveal>
+  <div class="relative p-[1px] rounded-[32px] bg-gradient-to-b from-white/10 to-transparent overflow-hidden group">
+    <!-- Spotlight glow on hover -->
+    <div class="absolute inset-0 bg-gradient-to-r from-terminal-green/20 via-terminal-cyan/20 to-purple-500/20 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-1000"></div>
+    
+    <div class="relative bg-[#0a0a0f]/80 rounded-[31px] p-10 md:p-16 overflow-hidden backdrop-blur-2xl">
+      <!-- Decorative background blur inside -->
+      <div class="absolute -top-40 -right-40 w-96 h-96 bg-terminal-cyan/5 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div class="relative z-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-5 tracking-tight">Stay synchronized.</h2>
+        <p class="text-terminal-dim/90 mb-10 max-w-lg mx-auto text-lg leading-relaxed">New dispatches transmitted directly to your feed reader. No spam, only signal.</p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
+          <div class="relative flex items-center w-full">
+            <span class="absolute left-5 text-terminal-green font-mono font-bold text-lg select-none">$</span>
+            <input type="text" readonly value="curl -O {{ site.url }}/feed.xml" class="w-full bg-black/60 border border-white/10 rounded-xl py-4 pl-12 pr-5 text-terminal-light-surface font-mono text-sm outline-none focus:border-terminal-green/50 transition-colors shadow-inner" onclick="this.select();">
+          </div>
+          <a href="/feed.xml" class="group/btn shrink-0 w-full sm:w-auto bg-white text-black hover:bg-terminal-green font-bold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2">
+            Subscribe
+            <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
